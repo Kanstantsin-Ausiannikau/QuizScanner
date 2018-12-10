@@ -1,0 +1,2 @@
+include ':tapp'
+include ':libraries:opencv'

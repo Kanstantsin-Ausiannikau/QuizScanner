@@ -1,0 +1,41 @@
+﻿@model Quizzy.Models.Question
+
+@{
+    ViewBag.Title = "DeleteQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удалить вопрос</h2>
+
+<h3>Вы уверены, что хотите удалить вопрос?</h3>
+<div>
+    <h4>Вопрос</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Difficulty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Difficulty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionText)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться", "Index")
+        </div>
+    }
+</div>

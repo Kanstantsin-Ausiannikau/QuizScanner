@@ -1,0 +1,111 @@
+﻿@model Quizzy.Models.Quiz
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Создать новый тест</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Тест</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ClientId)
+        @Html.HiddenFor(model => model.AnswerText)
+        @Html.HiddenFor(model => model.IsDeleted)
+        @Html.HiddenFor(model => model.IsModified)
+        @Html.HiddenFor(model => model.QuizVersion)
+        @Html.HiddenFor(model => model.ParentQuizId)
+        @Html.HiddenFor(model => model.QuizNumber)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuizNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.QuizNumber, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div id="questionBlock" class="form-group">
+            <div class="questionItem col-md-offset-2 col-md-10">
+                <h4>Вопрос №1</h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <label>Сложность вопроса</label>
+                        <input type="text" id="Questions[0].Difficulty" name="Questions[0].Difficulty" value="1" />
+                        <br />
+                        <label>Текст вопроса</label>
+                        <textarea class="form-control" style="min-width: 100%;height:180px" type='text' name='Questions[0].QuestionText'></textarea>
+                        <br />
+                        <label>Ответы (правильные - отметить)</label>
+                        <br />
+                        <p>
+                            <input id="Questions[0].Answers[0].RightAnswer" name="Questions[0].Answers[0].RightAnswer" type="checkbox" value="true" unchecked />
+                            <textarea class="form-control" style="min-width: 100%" type="text" id="Questions[0].Answers[0].Answer" name="Questions[0].Answers[0].Answer"></textarea>
+                        </p>
+                        <p>
+                            <input id="Questions[0].Answers[1].RightAnswer" name="Questions[0].Answers[1].RightAnswer" type="checkbox" value="true" unchecked />
+                            <textarea class="form-control" style="min-width: 100%" type="text" id="Questions[0].Answers[1].Answer" name="Questions[0].Answers[1].Answer"></textarea>
+                        </p>
+                        <p>
+                            <input id="Questions[0].Answers[2].RightAnswer" name="Questions[0].Answers[2].RightAnswer" type="checkbox" value="true" unchecked />
+                            <textarea class="form-control" style="min-width: 100%" type="text" id="Questions[0].Answers[2].Answer" name="Questions[0].Answers[2].Answer"></textarea>
+                        </p>
+                        <p>
+                            <input id="Questions[0].Answers[3].RightAnswer" name="Questions[0].Answers[3].RightAnswer" type="checkbox" value="true" unchecked />
+                            <textarea class="form-control" style="min-width: 100%" type="text" id="Questions[0].Answers[3].Answer" name="Questions[0].Answers[3].Answer"></textarea>
+                        </p>
+                        <p>
+                            <input id="Questions[0].Answers[4].RightAnswer" name="Questions[0].Answers[4].RightAnswer" type="checkbox" value="true" unchecked />
+                            <textarea class="form-control" style="min-width: 100%" type="text" id="Questions[0].Answers[4].Answer" name="Questions[0].Answers[4].Answer"></textarea>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <p><a class="addLink">Добавить новый вопрос</a></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Создать" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(function () {
+            var i = 0;
+            $('.addLink').click(function () {
+                i++;
+                var html2Add = "<div class=\"questionItem col-md-offset-2 col-md-10\">\n<h4>Вопрос №"+(i+1)+"<\/h4>\n<div class=\"row\">\n<div class=\"col-md-8\">\n<label>Сложность вопроса<\/label>\n<input type=\"text\" id=\"Questions["+i+"].Difficulty\" name=\"Questions["+i+"].Difficulty\" value=\"1\" \/>\n<br \/>\n<label>Текст вопроса<\/label>\n<textarea class=\"form-control\" style=\"min-width: 100%;height:180px\" type=\'text\' name=\'Questions["+i+"].QuestionText\'><\/textarea>\n<br \/>\n<label>Ответы (правильные - отметить)<\/label>\n<br \/>\n<p>\n<input id=\"Questions["+i+"].Answers[0].RightAnswer\" name=\"Questions["+i+"].Answers[0].RightAnswer\" type=\"checkbox\" value=\"true\" unchecked \/>\n<textarea class=\"form-control\" style=\"min-width: 100%\" type=\"text\" id=\"Questions["+i+"].Answers[0].Answer\" name=\"Questions["+i+"].Answers[0].Answer\"><\/textarea>\n<\/p>\n<p>\n<input id=\"Questions["+i+"].Answers[1].RightAnswer\" name=\"Questions["+i+"].Answers[1].RightAnswer\" type=\"checkbox\" value=\"true\" unchecked \/>\n<textarea class=\"form-control\" style=\"min-width: 100%\" type=\"text\" id=\"Questions["+i+"].Answers[1].Answer\" name=\"Questions["+i+"].Answers[1].Answer\"><\/textarea>\n<\/p>\n<p>\n<input id=\"Questions["+i+"].Answers[2].RightAnswer\" name=\"Questions["+i+"].Answers[2].RightAnswer\" type=\"checkbox\" value=\"true\" unchecked \/>\n<textarea class=\"form-control\" style=\"min-width: 100%\" type=\"text\" id=\"Questions["+i+"].Answers[2].Answer\" name=\"Questions["+i+"].Answers[2].Answer\"><\/textarea>\n<\/p>\n<p>\n<input id=\"Questions["+i+"].Answers[3].RightAnswer\" name=\"Questions["+i+"].Answers[3].RightAnswer\" type=\"checkbox\" value=\"true\" unchecked \/>\n<textarea class=\"form-control\" style=\"min-width: 100%\" type=\"text\" id=\"Questions["+i+"].Answers[3].Answer\" name=\"Questions["+i+"].Answers[3].Answer\"><\/textarea>\n<\/p>\n<p>\n<input id=\"Questions["+i+"].Answers[4].RightAnswer\" name=\"Questions["+i+"].Answers[4].RightAnswer\" type=\"checkbox\" value=\"true\" unchecked \/>\n<textarea class=\"form-control\" style=\"min-width: 100%\" type=\"text\" id=\"Questions["+i+"].Answers[4].Answer\" name=\"Questions["+i+"].Answers[4].Answer\"><\/textarea>\n<\/p>\n<\/div>\n<\/div>\n<\/div>\n";
+                $('#questionBlock').append(html2Add);
+            })
+        })
+    </script>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

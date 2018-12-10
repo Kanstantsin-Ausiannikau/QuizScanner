@@ -1,0 +1,46 @@
+﻿@model Quizzy.Models.Question
+
+@{
+    ViewBag.Title = "AddQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавить вопрос - Тест "@ViewBag.Quiz.Title"</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Question</h4>
+        <hr />
+
+        <div class="row">
+                <dl>
+                    <dt>Сложность вопроса</dt>
+                    <dd>@Html.EditorFor(item=>item.Difficulty)</dd>
+                    <dt>Текст вопроса</dt>
+                    <dd>@Html.TextAreaFor(item=>item.QuestionText, new { @class = "form-control", rows = "5" })</dd>
+                    <dt>Ответы (правильные - отметить)</dt>
+                    <dd>
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <p>
+                                @Html.EditorFor(item => item.Answers[i].RightAnswer)
+                                @Html.TextAreaFor(item => item.Answers[i].Answer, new { @class = "form-control", rows = "2" })
+                            </p>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

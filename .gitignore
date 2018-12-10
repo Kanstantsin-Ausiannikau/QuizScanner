@@ -1,0 +1,12 @@
+.gradle
+
+android/local.properties
+
+android/.idea/workspace.xml
+
+.DS_Store
+*.dll
+
+*.exe
+
+be/Quizzy/bin

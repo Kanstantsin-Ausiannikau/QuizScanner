@@ -1,0 +1,148 @@
+﻿@model Quizzy.Models.Quiz
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Quiz</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ClientId)
+        @Html.HiddenFor(model => model.AnswerText)
+        @Html.HiddenFor(model => model.IsDeleted)
+        @Html.HiddenFor(model => model.IsModified)
+        @Html.HiddenFor(model => model.QuizVersion)
+        @Html.HiddenFor(model => model.ParentQuizId)
+
+        <!--      <div class="form-group">
+                  @Html.LabelFor(model => model.ClientId, htmlAttributes: new { @class = "control-label col-md-2" })
+                  <div class="col-md-10">
+                      @Html.EditorFor(model => model.ClientId, new { htmlAttributes = new { @class = "form-control" } })
+                      @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+                  </div>
+              </div>
+            -->
+        <div class="form-group">
+            @Html.Label("Название теста", htmlAttributes: new { @class = "control-label col-md-2" })
+            <!-- @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" }) -->
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!--
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AnswerText, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AnswerText, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AnswerText, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+        -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuizNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.QuizNumber, new { @readonly = "readonly", htmlAttributes = new { @class = "form-control" } })
+                <!--@Html.ValidationMessageFor(model => model.QuizNumber, "", new { @class = "text-danger" })-->
+            </div>
+        </div>
+        <!--
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.QuizVersion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuizVersion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuizVersion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsModified, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsModified)
+                            @Html.ValidationMessageFor(model => model.IsModified, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsDeleted)
+                            @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+        -->
+        <div id="questionBlock" class="form-group">
+            @{int i = 0;
+            }
+            @foreach (var item in Model.Questions)
+            {
+               <!-- <input type="hidden" name="Questions[@i].Id" value="@item.Id" /> -->
+
+                @Html.Hidden("Questions[" + i + "].Id", item.Id)
+
+                <div class="questionItem col-md-offset-2 col-md-10">
+                    <h4>Вопрос № @(i + 1)</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Текст вопроса</strong></p>
+                            <p>@Html.TextArea("Questions["+i+"].QuestionText", item.QuestionText ,new { cols = 100, rows = 12 })</p>
+
+                  <!--          <p><strong>Сложность вопроса</strong></p>
+                            <p>@Html.Editor("Questions[" + i + "].Difficulty", item.Difficulty)</p>
+                      -->
+                        </div>
+                        <div class="col-md-3">
+                            <p><strong>Ответы</strong></p>
+                            @for (int j = 0; j < item.Answers.Count; j++)
+                            {
+                                <div class="col-md-offset-2 col-md-10">
+                                    @Html.CheckBox("Questions["+i+"].Answers["+j+"].RightAnswer", item.Answers[j].RightAnswer)
+                                    @Html.TextBox("Questions["+i+"].Answers["+j+"].Answer",item.Answers[j].Answer)
+                                    @Html.Hidden("Questions[" + i + "].Answers[" + j + "].Id", item.Answers[j].Id)
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-3">
+                            @Html.ActionLink("Удалить вопрос", "DeleteQuestion", new { id = item.Id }) |
+                            <br />
+                            @Html.ActionLink("Редактировать вопрос", "EditQuestion", new { id = item.Id })
+
+                        </div>
+                    </div>
+                </div>
+
+                i++;
+            }
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+                }
+
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+<div>
+    @Html.ActionLink("Добавить вопрос", "AddQuestion", new { quizId = Model.Id })
+</div>

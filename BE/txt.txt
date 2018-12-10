@@ -1,0 +1,1 @@
+<add name="DefaultConnection" connectionString="Data Source=ASUS-NOTE\SQLEXPRESS;Initial Catalog=tit;User ID=sa;Password=12345" providerName="System.Data.SqlClient" />
