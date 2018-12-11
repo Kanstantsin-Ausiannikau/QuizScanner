@@ -343,34 +343,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-        private String GetUrl(String url, String creds) throws IOException {
-
-
-            byte[] postData = creds.getBytes( StandardCharsets.UTF_8 );
-            int postDataLength = postData.length;
-            URL targetUrl = new URL( url );
-            HttpURLConnection conn= (HttpURLConnection) targetUrl.openConnection();
-            conn.setDoOutput( true );
-            conn.setInstanceFollowRedirects( false );
-            conn.setRequestMethod( "POST" );
-            conn.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty( "charset", "utf-8");
-            conn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
-            conn.setUseCaches( false );
-            try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
-                wr.write(postData);
-            }
-            /*HttpClient httpclient = new DefaultHttpClient();
-            HttpPost http = new HttpPost(url);
-
-            http.setEntity(new UrlEncodedFormEntity(pairs));
-
-            return (String) httpclient.execute(http, new BasicResponseHandler());
-            */
-            return "1";
-        }
-
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
