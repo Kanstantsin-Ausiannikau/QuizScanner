@@ -125,3 +125,4 @@ C:\Projects\QuizScanner\BE\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompiler
 C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.dll
 C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.pdb
+C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.csprojAssemblyReference.cache

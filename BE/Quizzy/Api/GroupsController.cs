@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Quizzy.Models;
+using BL;
 
 namespace Quizzy.Api
 {

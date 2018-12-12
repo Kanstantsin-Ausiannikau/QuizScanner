@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Quizzy.Models
+namespace BL
 {
     public class Quiz
     {
@@ -86,7 +86,7 @@ namespace Quizzy.Models
             return sb.ToString();
         }
 
-        internal static Quiz GetRandomizeQuiz(Quiz currentQuiz, string quizNumber)
+        public static Quiz GetRandomizeQuiz(Quiz currentQuiz, string quizNumber)
         {
             Quiz quiz = currentQuiz.Copy(quizNumber);
 
@@ -125,7 +125,7 @@ namespace Quizzy.Models
             return quiz;
         }
 
-        private Quiz Copy(string quizNumber)
+        internal Quiz Copy(string quizNumber)
         {
             return new Quiz() {
                 ParentQuizId = this.Id,

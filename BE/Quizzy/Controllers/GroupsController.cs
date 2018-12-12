@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Quizzy.Models;
+using BL;
 
 namespace Quizzy.Controllers
 {

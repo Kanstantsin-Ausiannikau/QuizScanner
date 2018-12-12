@@ -105,6 +105,8 @@ C:\Projects\Quizzy\Quizzy\obj\Debug\Quizzy.dll
 C:\Projects\Quizzy\Quizzy\obj\Debug\Quizzy.pdb
 C:\Projects\Quizzy\Quizzy\obj\Debug\Quizzy.csprojAssemblyReference.cache
 C:\Projects\Quizzy\Quizzy\bin\Newtonsoft.Json.pdb
+C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.csprojAssemblyReference.cache
+C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.csproj.CoreCompileInputs.cache
 C:\Projects\QuizScanner\BE\Quizzy\bin\ApplicationInsights.config
 C:\Projects\QuizScanner\BE\Quizzy\bin\roslyn\csc.exe
 C:\Projects\QuizScanner\BE\Quizzy\bin\roslyn\csc.exe.config
@@ -136,6 +138,7 @@ C:\Projects\QuizScanner\BE\Quizzy\bin\Quizzy.dll.config
 C:\Projects\QuizScanner\BE\Quizzy\bin\Quizzy.dll
 C:\Projects\QuizScanner\BE\Quizzy\bin\Quizzy.pdb
 C:\Projects\QuizScanner\BE\Quizzy\bin\Antlr3.Runtime.dll
+C:\Projects\QuizScanner\BE\Quizzy\bin\BL.dll
 C:\Projects\QuizScanner\BE\Quizzy\bin\EntityFramework.dll
 C:\Projects\QuizScanner\BE\Quizzy\bin\EntityFramework.SqlServer.dll
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AI.Agent.Intercept.dll
@@ -173,6 +176,9 @@ C:\Projects\QuizScanner\BE\Quizzy\bin\System.Web.WebPages.Deployment.dll
 C:\Projects\QuizScanner\BE\Quizzy\bin\System.Web.WebPages.dll
 C:\Projects\QuizScanner\BE\Quizzy\bin\System.Web.WebPages.Razor.dll
 C:\Projects\QuizScanner\BE\Quizzy\bin\WebGrease.dll
+C:\Projects\QuizScanner\BE\Quizzy\bin\BL.pdb
+C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.Owin.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.Owin.Security.xml
@@ -193,9 +199,7 @@ C:\Projects\QuizScanner\BE\Quizzy\bin\System.Web.WebPages.Razor.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Antlr3.Runtime.pdb
 C:\Projects\QuizScanner\BE\Quizzy\bin\EntityFramework.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\EntityFramework.SqlServer.xml
-C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.Owin.Security.Facebook.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.Owin.Security.Cookies.xml
@@ -207,7 +211,6 @@ C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AI.DependencyCollector.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AI.WindowsServer.xml
 C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AI.Web.xml
-C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.csproj.CoreCompileInputs.cache
 C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.csproj.CopyComplete
 C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.dll
 C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.pdb
