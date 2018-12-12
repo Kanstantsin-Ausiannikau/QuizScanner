@@ -30,13 +30,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 
@@ -287,77 +294,53 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            String result = null;
 
-//            List pairs = new ArrayList();
+                String address = "http://test.budny.by/api/token";
+                HttpURLConnection urlConnection;
+                String requestBody;
+                Uri.Builder builder = new Uri.Builder();
+                Map<String, String> stringMap = new HashMap<>();
+                stringMap.put("grant_type", "password");
+                stringMap.put("username", mEmail);
+                stringMap.put("password", mPassword);
 
-  //          pairs.add(new BasicNameValuePair("user", mEmail));
-   //         pairs.add(new BasicNameValuePair("password", mPassword));
-
-            String credentials = "user="+mEmail+"&password="+mPassword;
-
-            try {
-
-                //result = GetUrl("http://192.168.1.103/tit/Android/HelloRequest", pairs);
-                result = GetUrl("http://test.budny.by/Android/HelloRequest", credentials);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (result.equals("1")){
-
-                    SharedPreferences sharedPreferences;
-                    sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("user",mEmail);
-                    editor.putString("password",mPassword);
-                editor.putString("FirstLogin","true");
-                    editor.commit();
-                    return true;
+                Iterator entries = stringMap.entrySet().iterator();
+                while (entries.hasNext()) {
+                    Map.Entry entry = (Map.Entry) entries.next();
+                    builder.appendQueryParameter(entry.getKey().toString(), entry.getValue().toString());
+                    entries.remove();
                 }
-                else {
-                return  false;
-            }
-//                Thread.sleep(2000);
+                requestBody = builder.build().getEncodedQuery();
 
- //           for (String credential : DUMMY_CREDENTIALS) {
-//                String[] pieces = credential.split(":");
- //               if (pieces[0].equals(mEmail)) {
- //                   // Account exists, return true if the password matches.
-  //                  return pieces[1].equals(mPassword);
- //               }
- //           }
-
-            // TODO: register the new account here.
-            //return true;
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-        private String GetUrl(String url, String creds) throws IOException {
-
-
-            byte[] postData = creds.getBytes( StandardCharsets.UTF_8 );
-            int postDataLength = postData.length;
-            URL targetUrl = new URL( url );
-            HttpURLConnection conn= (HttpURLConnection) targetUrl.openConnection();
-            conn.setDoOutput( true );
-            conn.setInstanceFollowRedirects( false );
-            conn.setRequestMethod( "POST" );
-            conn.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty( "charset", "utf-8");
-            conn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
-            conn.setUseCaches( false );
-            try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
-                wr.write(postData);
-            }
-            /*HttpClient httpclient = new DefaultHttpClient();
-            HttpPost http = new HttpPost(url);
-
-            http.setEntity(new UrlEncodedFormEntity(pairs));
-
-            return (String) httpclient.execute(http, new BasicResponseHandler());
-            */
-            return "1";
+                try {
+                    URL url = new URL(address);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
+                    writer.write(requestBody);
+                    writer.flush();
+                    writer.close();
+                    outputStream.close();
+                    urlConnection.connect();
+                    if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        SharedPreferences sharedPreferences;
+                        sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("user", mEmail);
+                        editor.putString("password", mPassword);
+                        editor.putString("FirstLogin","true");
+                        editor.commit();
+                        return true;
+                    }
+                    // do something...
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return false;
         }
 
         @Override

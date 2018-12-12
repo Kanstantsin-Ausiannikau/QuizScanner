@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quizzy", "Quizzy\Quizzy.csproj", "{3BEB0E5D-CE40-4B79-863C-4B5A7EEEA3BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{060CA5CE-118D-4FFA-AEF0-6F9822C2A9C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{F47A5B9D-C75D-4AFB-98CF-2E654DD91102}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,19 @@ Global
 		{3BEB0E5D-CE40-4B79-863C-4B5A7EEEA3BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BEB0E5D-CE40-4B79-863C-4B5A7EEEA3BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BEB0E5D-CE40-4B79-863C-4B5A7EEEA3BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060CA5CE-118D-4FFA-AEF0-6F9822C2A9C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060CA5CE-118D-4FFA-AEF0-6F9822C2A9C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060CA5CE-118D-4FFA-AEF0-6F9822C2A9C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060CA5CE-118D-4FFA-AEF0-6F9822C2A9C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F47A5B9D-C75D-4AFB-98CF-2E654DD91102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F47A5B9D-C75D-4AFB-98CF-2E654DD91102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F47A5B9D-C75D-4AFB-98CF-2E654DD91102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F47A5B9D-C75D-4AFB-98CF-2E654DD91102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF0958E2-E575-48CD-B243-61E249EF44F6}
 	EndGlobalSection
 EndGlobal

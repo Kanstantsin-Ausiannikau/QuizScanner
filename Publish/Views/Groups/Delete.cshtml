@@ -1,0 +1,49 @@
+﻿@model Quizzy.Models.Group
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Вы уверены что хотите удалить группу?</h3>
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.IsModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>
