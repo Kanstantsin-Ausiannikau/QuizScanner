@@ -214,3 +214,6 @@ C:\Projects\QuizScanner\BE\Quizzy\bin\Microsoft.AI.Web.xml
 C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.csproj.CopyComplete
 C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.dll
 C:\Projects\QuizScanner\BE\Quizzy\obj\Debug\Quizzy.pdb
+C:\Projects\QuizScanner\BE\Quizzy\bin\DAL.dll
+C:\Projects\QuizScanner\BE\Quizzy\bin\DAL.pdb
+C:\Projects\QuizScanner\BE\Quizzy\bin\DAL.dll.config

@@ -3,12 +3,16 @@ package kaus.testit.tapp;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,35 +51,54 @@ class PostDataSender extends AsyncTask<String, Void, String> {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private String GetUrl(String url, String urlData) throws IOException {
+    private String GetUrl(String urlAdress, String urlData) throws IOException {
 
-//        String urlParameters  = "param1=a&param2=b&param3=c";
-        byte[] postData = urlData.getBytes(StandardCharsets.UTF_8);
-        int postDataLength = postData.length;
-        URL targetUrl = new URL(url);
-        HttpURLConnection conn= (HttpURLConnection) targetUrl.openConnection();
-        conn.setDoOutput(true);
-        conn.setInstanceFollowRedirects(false);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setRequestProperty("charset", "utf-8");
-        conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-        conn.setUseCaches(false);
-        try(DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
-            wr.write(postData);
+        Log.d("quiz", urlAdress);
+        Log.d("quiz", urlData);
+
+        URL url;
+        url = new URL(urlAdress);
+        URLConnection connection;
+        connection = url.openConnection();
+
+        Log.d("quiz", "open");
+
+        connection.setRequestProperty("Content-Type",
+                "application/x-www-form-urlencoded");
+
+        connection.setRequestProperty("Content-Length", "" +
+                Integer.toString("password=Lehfrb1!&user=2000@tut.by".getBytes().length));
+        connection.setRequestProperty("Content-Language", "en-US");
+
+        connection.setUseCaches(false);
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+
+        Log.d("quiz", "get answer");
+
+        DataOutputStream wr = new DataOutputStream(
+                connection.getOutputStream());
+        wr.writeBytes("password=Lehfrb1!&user=2000@tut.by");
+        wr.flush();
+        wr.close();
+
+        Log.d("quiz", "convert answer");
+
+        InputStream is = connection.getInputStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+        String line;
+        StringBuffer response = new StringBuffer();
+        while ((line = rd.readLine()) != null) {
+            Log.d("quiz", line);
+            response.append(line);
+            response.append('\r');
         }
+        rd.close();
+
+        Log.d("quiz", response.toString());
 
 
-/*
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost http = new HttpPost(url);
-
-        http.setEntity(new UrlEncodedFormEntity(pairs));
-
-        return (String) httpclient.execute(http, new BasicResponseHandler());
-
-        */
-        return "1";
+        return response.toString();
     }
 
 }

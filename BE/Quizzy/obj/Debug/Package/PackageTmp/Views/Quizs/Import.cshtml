@@ -1,0 +1,45 @@
+﻿@model BL.Quiz
+
+@{
+    ViewBag.Title = "Export";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Export</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Quiz</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    <h3>Загрузить тест</h3>
+    @using (Html.BeginForm("Upload", "Quizs", new { title = Model.Title }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @*<input type="hidden" name="groupId" value="@Model.Id" />*@
+        <input type="file" name="upload" /><br>
+        <input type="submit" value="Загрузить" />
+    }
+</div>
+
+<p></p>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

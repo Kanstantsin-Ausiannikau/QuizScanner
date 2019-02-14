@@ -9,6 +9,7 @@ using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WebAPI.Models;
+using Quizzy.DAL;
 
 namespace WebAPI.Helpers
 {
@@ -29,7 +30,7 @@ namespace WebAPI.Helpers
         /// <summary>  
         /// Database Store property.  
         /// </summary>  
-        private ApiContext databaseManager = new ApiContext();
+        private QuizzyContext databaseManager = new QuizzyContext();
 
         #endregion
 

@@ -81,11 +81,13 @@ namespace WebAPI
             //   appId: "",  
             //   appSecret: "");  
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()  
-            //{  
-            //    ClientId = "",  
-            //    ClientSecret = ""  
-            //});  
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()  
+            {  
+                ClientId = "81431925341-h1nd3gdhgoa81edp51l1k6d3dcq0gu2s.apps.googleusercontent.com",  
+                ClientSecret = "_d-v1jcsRszmc7uWF9UceQN3",
+                CallbackPath = new PathString("/signin-google"),
+                Provider = new GoogleOAuth2AuthenticationProvider()
+            });  
         }
     }
 }

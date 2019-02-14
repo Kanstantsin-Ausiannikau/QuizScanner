@@ -11,7 +11,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
-      <publishTime>11/28/2017 08:41:52</publishTime>
+      <publishTime>12/12/2018 14:16:14</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>02/22/2013 08:43:40</publishTime>
@@ -20,7 +20,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
-      <publishTime>11/28/2017 08:41:52</publishTime>
+      <publishTime>12/12/2018 14:16:14</publishTime>
+    </File>
+    <File Include="bin/BL.dll">
+      <publishTime>02/04/2019 11:34:46</publishTime>
+    </File>
+    <File Include="bin/BL.pdb">
+      <publishTime>02/04/2019 11:34:46</publishTime>
+    </File>
+    <File Include="bin/DAL.dll">
+      <publishTime>02/04/2019 11:34:46</publishTime>
+    </File>
+    <File Include="bin/DAL.dll.config">
+      <publishTime>01/18/2019 14:59:34</publishTime>
+    </File>
+    <File Include="bin/DAL.pdb">
+      <publishTime>02/04/2019 11:34:46</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -56,10 +71,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/06/2016 15:09:52</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
-      <publishTime>04/03/2015 17:07:22</publishTime>
+      <publishTime>04/24/2018 12:47:38</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
-      <publishTime>04/03/2015 17:07:22</publishTime>
+      <publishTime>04/24/2018 12:47:40</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
       <publishTime>04/03/2015 17:07:22</publishTime>
@@ -107,10 +122,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2012 13:00:52</publishTime>
     </File>
     <File Include="bin/Quizzy.dll">
-      <publishTime>12/12/2018 09:41:28</publishTime>
+      <publishTime>02/04/2019 11:49:24</publishTime>
     </File>
     <File Include="bin/Quizzy.pdb">
-      <publishTime>12/12/2018 09:41:28</publishTime>
+      <publishTime>02/04/2019 11:49:24</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 14:50:24</publishTime>
@@ -227,10 +242,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/10/2013 17:28:38</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>02/20/2018 08:58:48</publishTime>
@@ -239,16 +254,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2017 08:41:06</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>11/28/2017 08:41:06</publishTime>
@@ -257,100 +272,100 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/10/2018 12:20:10</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>11/28/2017 08:41:20</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
-      <publishTime>11/28/2017 08:41:22</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>11/28/2017 08:41:40</publishTime>
+      <publishTime>12/12/2018 14:16:12</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>11/28/2017 08:41:40</publishTime>
+      <publishTime>12/12/2018 14:16:11</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>11/28/2017 08:41:40</publishTime>
+      <publishTime>12/12/2018 14:16:15</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>11/28/2017 08:41:40</publishTime>
+      <publishTime>12/12/2018 14:16:15</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
-      <publishTime>11/28/2017 08:41:38</publishTime>
+      <publishTime>12/12/2018 14:16:18</publishTime>
     </File>
     <File Include="Scripts/respond.js">
-      <publishTime>11/28/2017 08:41:38</publishTime>
+      <publishTime>12/12/2018 14:16:23</publishTime>
     </File>
     <File Include="Scripts/respond.min.js">
-      <publishTime>11/28/2017 08:41:38</publishTime>
+      <publishTime>12/12/2018 14:16:23</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>11/28/2017 08:41:42</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:35</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginFailure.cshtml">
       <publishTime>11/28/2017 08:41:42</publishTime>
     </File>
     <File Include="Views/Account/ForgotPassword.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:35</publishTime>
     </File>
     <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
       <publishTime>11/28/2017 08:41:42</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>02/20/2018 09:02:14</publishTime>
+      <publishTime>12/12/2018 15:10:58</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>03/14/2018 08:52:50</publishTime>
+      <publishTime>12/12/2018 15:12:41</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
       <publishTime>11/28/2017 08:41:42</publishTime>
     </File>
     <File Include="Views/Account/SendCode.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Account/VerifyCode.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:35</publishTime>
     </File>
     <File Include="Views/Groups/AttachQuiz.cshtml">
-      <publishTime>12/05/2017 21:42:56</publishTime>
+      <publishTime>12/12/2018 14:55:35</publishTime>
     </File>
     <File Include="Views/Groups/Create.cshtml">
-      <publishTime>12/05/2017 13:40:22</publishTime>
+      <publishTime>12/12/2018 14:55:35</publishTime>
     </File>
     <File Include="Views/Groups/CreateRespondent.cshtml">
-      <publishTime>12/06/2017 10:18:16</publishTime>
+      <publishTime>12/12/2018 14:55:35</publishTime>
     </File>
     <File Include="Views/Groups/Delete.cshtml">
-      <publishTime>12/05/2017 09:43:12</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Groups/Details.cshtml">
-      <publishTime>12/24/2017 12:51:34</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Groups/Edit.cshtml">
-      <publishTime>12/05/2017 16:50:34</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Groups/Index.cshtml">
-      <publishTime>12/06/2017 20:09:56</publishTime>
+      <publishTime>12/12/2018 14:57:47</publishTime>
     </File>
     <File Include="Views/Groups/ViewRespondents.cshtml">
-      <publishTime>12/06/2017 20:53:26</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>11/28/2017 08:41:06</publishTime>
@@ -359,67 +374,67 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2017 08:41:06</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/20/2018 21:40:40</publishTime>
+      <publishTime>01/23/2019 13:39:07</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Manage/ChangePassword.cshtml">
-      <publishTime>02/20/2018 09:10:24</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Manage/Index.cshtml">
-      <publishTime>02/20/2018 09:07:48</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Manage/ManageLogins.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Manage/SetPassword.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
-      <publishTime>11/28/2017 08:41:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Quizs/AddQuestion.cshtml">
-      <publishTime>01/08/2018 19:32:26</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/Create.cshtml">
-      <publishTime>01/08/2018 15:23:48</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/Delete.cshtml">
-      <publishTime>12/03/2017 23:03:58</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/DeleteQuestion.cshtml">
-      <publishTime>02/20/2018 09:48:38</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/Details.cshtml">
-      <publishTime>11/30/2017 17:51:36</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/Edit.cshtml">
-      <publishTime>02/20/2018 09:46:48</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/EditQuestion.cshtml">
-      <publishTime>01/09/2018 19:40:42</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/Import.cshtml">
-      <publishTime>02/12/2018 19:04:20</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Quizs/Index.cshtml">
-      <publishTime>02/20/2018 09:19:12</publishTime>
+      <publishTime>12/12/2018 14:22:54</publishTime>
     </File>
     <File Include="Views/Respondents/Create.cshtml">
-      <publishTime>12/06/2017 10:12:12</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Respondents/Delete.cshtml">
-      <publishTime>11/28/2017 19:17:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Respondents/Details.cshtml">
-      <publishTime>11/28/2017 19:17:42</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Respondents/Edit.cshtml">
-      <publishTime>11/28/2017 19:17:44</publishTime>
+      <publishTime>12/12/2018 14:55:29</publishTime>
     </File>
     <File Include="Views/Respondents/Index.cshtml">
-      <publishTime>11/28/2017 21:51:32</publishTime>
+      <publishTime>12/12/2018 14:57:47</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>11/28/2017 08:41:42</publishTime>
@@ -440,7 +455,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2017 08:41:06</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/12/2018 09:41:29</publishTime>
+      <publishTime>01/23/2019 15:52:57</publishTime>
     </File>
   </ItemGroup>
 </Project>

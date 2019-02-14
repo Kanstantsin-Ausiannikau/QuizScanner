@@ -126,3 +126,11 @@ C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.dll
 C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.pdb
 C:\Projects\QuizScanner\BE\WebAPI\obj\Debug\WebAPI.csprojAssemblyReference.cache
+C:\Projects\QuizScanner\BE\WebAPI\bin\BL.dll
+C:\Projects\QuizScanner\BE\WebAPI\bin\BL.pdb
+C:\Projects\QuizScanner\BE\WebAPI\bin\DAL.dll
+C:\Projects\QuizScanner\BE\WebAPI\bin\DAL.pdb
+C:\Projects\QuizScanner\BE\WebAPI\bin\DAL.dll.config
+C:\Projects\QuizScanner\BE\WebAPI\bin\Microsoft.Owin.Cors.dll
+C:\Projects\QuizScanner\BE\WebAPI\bin\System.Web.Cors.dll
+C:\Projects\QuizScanner\BE\WebAPI\bin\Microsoft.Owin.Cors.xml

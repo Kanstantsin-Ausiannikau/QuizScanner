@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Quizzy.Models;
 using BL;
+using Quizzy.DAL;
 
 namespace Quizzy.Controllers
 {

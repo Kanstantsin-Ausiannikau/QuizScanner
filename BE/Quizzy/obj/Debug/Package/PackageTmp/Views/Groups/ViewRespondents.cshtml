@@ -1,0 +1,46 @@
+﻿@model BL.Group
+@{
+    ViewBag.Title = "ViewRespondents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список группы</h2>
+<h4>@Html.DisplayFor(model=>model.GroupName)</h4>
+@Html.HiddenFor(model=>model.Id)
+<table class="table">
+    <tr><th>№</th><th>Номер</th><th>Имя</th><th>Фамилия</th></tr>
+    @{ int i = 0;}
+    @foreach (var item in Model.Respondents)
+    {    i++;
+
+        <tr>
+            <td style="width:10%">@i</td>
+            <td style="width:10%">
+                @Html.HiddenFor(model=>item.Id)
+                @Html.DisplayFor(model=>item.RespondentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FirstName)
+            </td>
+            <td>   
+                @Html.DisplayFor(model => item.LastName)
+            </td>
+            <td>@Html.ActionLink("Удалить", "Delete", "Respondents", new { id = item.Id }, null) | 
+                @Html.ActionLink("Редактировать", "Edit", "Respondents", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    @Html.ActionLink("Добавить пользователя", "CreateRespondent", new { id = Model.Id }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>
+
+<h3>Загрузить пользователей</h3>
+@using (Html.BeginForm("Upload", "Groups", new {groupId = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @*<input type="hidden" name="groupId" value="@Model.Id" />*@
+    <input type="file" name="upload" /><br>
+    <input type="submit" value="Загрузить" />
+}
+

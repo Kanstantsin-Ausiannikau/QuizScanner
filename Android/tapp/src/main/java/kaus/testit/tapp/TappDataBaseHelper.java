@@ -228,12 +228,12 @@ public class TappDataBaseHelper extends SQLiteOpenHelper {
                 String[] items = rightAnswers[i].split(",");
                 answers[i] = new int[5];
                 for (int j = 0; j < 5; j++) {
-                    answers[i][j] = Integer.parseInt(items[j]);
-                }
 
+                    Log.d("Quiz", items[j].replace("\r",""));
+                    answers[i][j] = Integer.parseInt(items[j].replace("\r",""));
+                }
             }
         }
-
         return answers;
     }
 

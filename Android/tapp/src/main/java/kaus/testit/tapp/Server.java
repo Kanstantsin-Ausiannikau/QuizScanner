@@ -55,6 +55,10 @@ public class Server implements IServer {
     
     public void Connect(String userName, String password){
 
+        mIsConnected = true;
+
+
+        /*
         mIsConnected = false;
 
         int _sessionId = 0;
@@ -82,6 +86,8 @@ public class Server implements IServer {
         if (_sessionId>0){
             mIsConnected = true;
         }
+
+        */
     }
 
     public boolean isOnline() {

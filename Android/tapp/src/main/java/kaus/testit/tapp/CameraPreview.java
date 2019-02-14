@@ -158,7 +158,7 @@ public class CameraPreview extends SurfaceView implements Callback {
             return;
         }
 
-         mView.setImageBitmap(ImageSaver.getBmp(answer.getImage()));
+         //mView.setImageBitmap(ImageSaver.getBmp(answer.getImage()));
 
         if (!answer.getQuizNumber().isEmpty()) {
 

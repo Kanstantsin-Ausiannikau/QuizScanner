@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Quizzy.Models;
 using BL;
+using Quizzy.DAL;
 
 namespace Quizzy.Controllers
 {

@@ -216,7 +216,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NumberGenerator.cs" />
-    <Compile Include="Models\QuizzyContext.cs" />
     <Compile Include="Models\QuizzyDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -316,6 +315,10 @@
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{f47a5b9d-c75d-4afb-98cf-2e654dd91102}</Project>
       <Name>BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{cbc12491-7558-4f0b-a2d7-d6c849541e26}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

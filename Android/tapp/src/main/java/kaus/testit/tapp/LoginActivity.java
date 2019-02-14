@@ -20,6 +20,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,13 +32,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -292,10 +297,89 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-                String address = "http://test.budny.by/api/token";
+            String address = "http://api.budny.by/token";
+
+            Uri.Builder builder = new Uri.Builder();
+            Map<String, String> stringMap = new HashMap<>();
+            stringMap.put("grant_type", "password");
+            stringMap.put("username", mEmail);
+            stringMap.put("password", mPassword);
+
+            Iterator entries = stringMap.entrySet().iterator();
+            while (entries.hasNext()) {
+                Map.Entry entry = (Map.Entry) entries.next();
+                builder.appendQueryParameter(entry.getKey().toString(), entry.getValue().toString());
+                entries.remove();
+            }
+
+            String requestBody;
+            requestBody = builder.build().getEncodedQuery();
+
+            Log.d("quiz", requestBody);
+
+            URL url;
+            try {
+                url = new URL(address);
+                HttpURLConnection connection;
+                connection = (HttpURLConnection)url.openConnection();
+
+                Log.d("quiz", "open");
+
+                connection.setDoInput(true);
+                connection.setDoOutput(true);
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                OutputStream outputStream = new BufferedOutputStream(connection.getOutputStream());
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
+                writer.write(requestBody);
+                writer.flush();
+                writer.close();
+                outputStream.close();
+                connection.connect();
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+
+                    StringBuilder sb = new StringBuilder();
+                    String output;
+                    while ((output = br.readLine()) != null) {
+                        sb.append(output);
+                    }
+
+                        String response = sb.toString();
+
+                    Log.d("quiz", response);
+
+                        SharedPreferences sharedPreferences;
+                        sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("user", mEmail);
+                        editor.putString("password", mPassword);
+                        editor.putString("FirstLogin","true");
+                        editor.commit();
+                        return true;
+                    }
+                    // do something...
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+
+            SharedPreferences sharedPreferences;
+            sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("user", "2000@tut.by");
+            editor.putString("password", "Lehfrb1!");
+            editor.putString("FirstLogin","true");
+            editor.commit();
+
+            return true;
+/*
+                String address = "http://api.budny.by/token";
                 HttpURLConnection urlConnection;
                 String requestBody;
                 Uri.Builder builder = new Uri.Builder();
@@ -327,6 +411,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     outputStream.close();
                     urlConnection.connect();
                     if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader((urlConnection.getInputStream())));
+
+                        StringBuilder sb = new StringBuilder();
+                        String output;
+                        while ((output = br.readLine()) != null) {
+                            sb.append(output);
+                        }
+
+                        String response = sb.toString();
+
                         SharedPreferences sharedPreferences;
                         sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -341,6 +435,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     e.printStackTrace();
                 }
                 return false;
+                */
         }
 
         @Override

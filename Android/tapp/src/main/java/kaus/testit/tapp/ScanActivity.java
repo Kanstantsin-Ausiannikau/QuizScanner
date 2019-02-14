@@ -51,7 +51,8 @@ public class ScanActivity extends AppCompatActivity {
 
         List<Camera.Size> sizeList = parameters.getSupportedPreviewSizes();
 
-        parameters.setPreviewSize(800,600);
+       // parameters.setPreviewSize(800,600);
+        parameters.setPreviewSize(1280,720);
         mCamera.setParameters(parameters);
 
         preview = new CameraPreview(this, mCamera, (TextView) findViewById(R.id.txtViewAnswer), (ImageView)findViewById(R.id.backgraundImage)); //3

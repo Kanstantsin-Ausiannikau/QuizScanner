@@ -13,6 +13,7 @@ using System.Web;
 using OfficeOpenXml;
 using System.Diagnostics;
 using BL;
+using Quizzy.DAL;
 
 namespace Quizzy.Controllers
 {
@@ -300,6 +301,10 @@ namespace Quizzy.Controllers
 
             var quiz = await db.Quizes.Where(q => q.Id == id).Include("Questions.Answers").FirstOrDefaultAsync();
 
+            var parentQuiz = await db.Quizes.Where(q => q.Id == quiz.ParentQuizId).FirstOrDefaultAsync();
+
+            
+
             string ttf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
             var baseFont = BaseFont.CreateFont(ttf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             var font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
@@ -318,7 +323,20 @@ namespace Quizzy.Controllers
 
                 table.DefaultCell.Border = Rectangle.NO_BORDER;
 
-                myDocument.Add(new Paragraph($"Тест {quiz.QuizNumber}", fontBold));
+                string quizTitle = string.Empty;
+                string quizCode = quiz.QuizNumber.ToString();
+
+                if (parentQuiz!=null)
+                {
+                    quizTitle += parentQuiz.Title;
+                }
+                else
+                {
+                    quizTitle += quiz.Title;
+                }
+
+                myDocument.Add(new Paragraph($"Тест: {quizTitle}", fontBold));
+                myDocument.Add(new Paragraph($"Код теста: {quizCode}", fontBold));
                 myDocument.Add(new Paragraph(" "));
                 myDocument.Add(new Paragraph("Для прохождения теста необходимо отметить на бланке ответов 'Код теста'.", fontHead));
                 myDocument.Add(new Paragraph("При ответе необходимо поставить метку в соответствуещем поле, метка не должна выходить за пределы метки-квадрата.", fontHead));

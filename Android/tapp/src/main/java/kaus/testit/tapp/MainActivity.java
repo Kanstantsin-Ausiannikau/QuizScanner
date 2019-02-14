@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         sp = getSharedPreferences("Quizzy",MODE_PRIVATE);
 
         if (sp.getString("user",null)==null){
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+ //           Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            startActivity(intent);
         }
 
 
@@ -77,9 +77,17 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
 
             Server server = new Server(getApplicationContext());
-            server.Connect(sp.getString("user",null),sp.getString("password",null));
+            //server.Connect(sp.getString("user",null),sp.getString("password",null));
+
+            server.Connect("2000@tut.by","Lehfrb1!");
+
+
             if (server.isConnected()) {
-                server.SyncServer(sp.getString("user", null), sp.getString("password", null));
+                //server.SyncServer(sp.getString("user", null), sp.getString("password", null));
+
+                server.SyncServer("2000@tut.by","Lehfrb1!");
+
+
                 Snackbar.make(navigationView, "Синхронизация завершена",
                         Snackbar.LENGTH_LONG).show();
             }
@@ -139,7 +147,10 @@ public class MainActivity extends AppCompatActivity {
                             Server server = new Server(getApplicationContext());
                             server.Connect(sp.getString("user",null),sp.getString("password",null));
                             if (server.isConnected()) {
-                                server.SyncServer(sp.getString("user", null), sp.getString("password", null));
+                                //server.SyncServer(sp.getString("user", null), sp.getString("password", null));
+
+                                server.SyncServer("2000@tut.by", "Lehfrb1!");
+
                                 Snackbar.make(navigationView, "Синхронизация завершена",
                                         Snackbar.LENGTH_LONG).show();
                             }
@@ -187,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override

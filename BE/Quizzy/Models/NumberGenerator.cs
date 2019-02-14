@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using BL;
+using Quizzy.DAL;
 
 namespace Quizzy.Models
 {

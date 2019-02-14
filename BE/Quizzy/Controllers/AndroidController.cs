@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using BL;
+using Quizzy.DAL;
 
 namespace Quizzy.Controllers
 {
@@ -129,29 +130,34 @@ namespace Quizzy.Controllers
             string userName = Request.Params["user"];
             string password = Request.Params["password"];
 
+            //string userName = "2000@tut.by";
+           // string password = "Lehfrb1!";
+
+
             var user = await db.Users.Where(u => (u.UserName == userName) && (u.Password == password)).Include("Groups").FirstOrDefaultAsync();
 
             //string groups = JsonConverter.GetGroupsJsonData(user.Groups);
 
-            //StringBuilder sb = new StringBuilder();
-            //string separator = "";
-            //foreach (var group in user.Groups)
-            //{
-            //    if (!group.IsDeleted)
-            //    {
-            //        sb.Append($"{separator}{0};{group.Id};{group.GroupName}");
-            //        separator = "|";
-            //    }
-            //}
-            //return sb.ToString();
+            StringBuilder sb = new StringBuilder();
+            string separator = "";
+            foreach (var group in user.Groups)
+            {
+                if (!group.IsDeleted)
+                {
+                    sb.Append($"{separator}{0};{group.Id};{group.GroupName}");
+                    separator = "|";
+                }
+            }
+            return sb.ToString();
 
-            return JsonConvert.SerializeObject(user.Groups);
+            //return JsonConvert.SerializeObject(user.Groups);
         }
 
         public async Task<string> GetGroupsQuizesRequest()
         {
-            string userName = Request.Params["user"];
-            string password = Request.Params["password"];
+             string userName = Request.Params["user"];
+             string password = Request.Params["password"];
+
 
             var user = await db.Users.Where(u => (u.UserName == userName) && (u.Password == password)).Include("Groups.Quizs").FirstOrDefaultAsync();
 

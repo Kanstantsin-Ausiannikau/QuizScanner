@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Quizzy.Models;
 using BL;
+using Quizzy.DAL;
 
 namespace Quizzy.Api
 {
