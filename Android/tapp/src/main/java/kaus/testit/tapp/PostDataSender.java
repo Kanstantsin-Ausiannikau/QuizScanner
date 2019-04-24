@@ -1,21 +1,30 @@
 package kaus.testit.tapp;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class PostDataSender extends AsyncTask<String, Void, String> {
 
@@ -24,20 +33,9 @@ class PostDataSender extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... data) {
 
         String result = null;
-        List pairs = new ArrayList();
-
-        String urlData = null;
-        String separator = "";
-        for(int i=1;i<data.length;i=i+2) {
-
-            urlData = separator+data[i]+data[i+1];
-            separator = "&";
-
-            //pairs.add(new Pair(data[i], data[i+1]));
-        }
 
         try {
-            result = GetUrl(data[0], urlData);
+            result = GetUrl(data[0], data[1]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,18 +55,59 @@ class PostDataSender extends AsyncTask<String, Void, String> {
         Log.d("quiz", urlData);
 
         URL url;
+        //String response = null;
+
+
+        StringBuffer response = new StringBuffer();
+
+        try {
+            url = new URL(urlAdress);
+            HttpURLConnection connection;
+            connection = (HttpURLConnection)url.openConnection();
+
+            Log.d("quiz", "open get request");
+
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type",
+                    "application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + urlData);
+            int responseCode = connection.getResponseCode();
+
+            Log.d("quiz", String.valueOf(responseCode));
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+
+            // do something...
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+/*
+
+
+
+
+        URL url;
         url = new URL(urlAdress);
-        URLConnection connection;
-        connection = url.openConnection();
+        HttpURLConnection connection;
+        connection = (HttpURLConnection)url.openConnection();
 
         Log.d("quiz", "open");
 
         connection.setRequestProperty("Content-Type",
-                "application/x-www-form-urlencoded");
+                "application/json");
 
-        connection.setRequestProperty("Content-Length", "" +
-                Integer.toString("password=Lehfrb1!&user=2000@tut.by".getBytes().length));
-        connection.setRequestProperty("Content-Language", "en-US");
+        connection.setRequestProperty("Authorization", "Bearer " + urlData);
 
         connection.setUseCaches(false);
         connection.setDoInput(true);
@@ -82,7 +121,24 @@ class PostDataSender extends AsyncTask<String, Void, String> {
         wr.flush();
         wr.close();
 
-        Log.d("quiz", "convert answer");
+        connection.connect();
+        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            BufferedReader br = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+
+            StringBuilder sb = new StringBuilder();
+            String output;
+            while ((output = br.readLine()) != null) {
+                sb.append(output);
+            }
+
+            String response = sb.toString();
+
+            Log.d("quiz", response);
+
+            return  sb.toString();
+        }
+
+/*        Log.d("quiz", "convert answer");
 
         InputStream is = connection.getInputStream();
         BufferedReader rd = new BufferedReader(new InputStreamReader(is));
@@ -97,6 +153,11 @@ class PostDataSender extends AsyncTask<String, Void, String> {
 
         Log.d("quiz", response.toString());
 
+
+        return response.toString();
+        */
+
+        Log.d("quiz", response.toString());
 
         return response.toString();
     }

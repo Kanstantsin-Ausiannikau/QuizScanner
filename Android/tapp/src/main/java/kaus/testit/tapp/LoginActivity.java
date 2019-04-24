@@ -3,9 +3,7 @@ package kaus.testit.tapp;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -13,7 +11,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -31,25 +28,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+
 
 
 /**
@@ -95,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,20 +160,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-            boolean isSuccess = false;
+            String response = null;
             try {
-                isSuccess =  mAuthTask.get();
+                response =  mAuthTask.get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
 
-            if (isSuccess){
+            if (response!=null){
                 this.finish();
             }
-
-
         }
     }
 
@@ -286,7 +279,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, String> {
 
         private final String mEmail;
         private final String mPassword;
@@ -298,7 +291,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-        protected Boolean doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
             String address = "http://api.budny.by/token";
@@ -322,6 +315,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d("quiz", requestBody);
 
             URL url;
+            String response = null;
+
+            Map<String,String> responseMap = new HashMap<String, String>();
+
+
             try {
                 url = new URL(address);
                 HttpURLConnection connection;
@@ -349,18 +347,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         sb.append(output);
                     }
 
-                        String response = sb.toString();
+                    response = sb.toString();
 
                     Log.d("quiz", response);
 
-                        SharedPreferences sharedPreferences;
-                        sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("user", mEmail);
-                        editor.putString("password", mPassword);
-                        editor.putString("FirstLogin","true");
-                        editor.commit();
-                        return true;
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    responseMap = objectMapper.readValue(response, HashMap.class);
+                    Log.d("quiz", responseMap.get("access_token"));
                     }
                     // do something...
                 } catch (Exception e) {
@@ -372,78 +365,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             SharedPreferences sharedPreferences;
             sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("user", "2000@tut.by");
-            editor.putString("password", "Lehfrb1!");
+            editor.putString("user", responseMap.get("userName"));
+            editor.putString("token", responseMap.get("access_token"));
+            //editor.putString("password", "Lehfrb1!");
             editor.putString("FirstLogin","true");
             editor.commit();
 
-            return true;
-/*
-                String address = "http://api.budny.by/token";
-                HttpURLConnection urlConnection;
-                String requestBody;
-                Uri.Builder builder = new Uri.Builder();
-                Map<String, String> stringMap = new HashMap<>();
-                stringMap.put("grant_type", "password");
-                stringMap.put("username", mEmail);
-                stringMap.put("password", mPassword);
-
-                Iterator entries = stringMap.entrySet().iterator();
-                while (entries.hasNext()) {
-                    Map.Entry entry = (Map.Entry) entries.next();
-                    builder.appendQueryParameter(entry.getKey().toString(), entry.getValue().toString());
-                    entries.remove();
-                }
-                requestBody = builder.build().getEncodedQuery();
-
-                try {
-                    URL url = new URL(address);
-                    urlConnection = (HttpURLConnection) url.openConnection();
-                    urlConnection.setDoInput(true);
-                    urlConnection.setDoOutput(true);
-                    urlConnection.setRequestMethod("POST");
-                    urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                    OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
-                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
-                    writer.write(requestBody);
-                    writer.flush();
-                    writer.close();
-                    outputStream.close();
-                    urlConnection.connect();
-                    if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader((urlConnection.getInputStream())));
-
-                        StringBuilder sb = new StringBuilder();
-                        String output;
-                        while ((output = br.readLine()) != null) {
-                            sb.append(output);
-                        }
-
-                        String response = sb.toString();
-
-                        SharedPreferences sharedPreferences;
-                        sharedPreferences = getSharedPreferences("Quizzy",MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("user", mEmail);
-                        editor.putString("password", mPassword);
-                        editor.putString("FirstLogin","true");
-                        editor.commit();
-                        return true;
-                    }
-                    // do something...
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return false;
-                */
+            return response;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final String success) {
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
+            if (success!=null) {
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

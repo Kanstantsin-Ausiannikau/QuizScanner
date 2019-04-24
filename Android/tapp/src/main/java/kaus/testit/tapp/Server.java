@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by home on 31.03.2016.
  */
-public class Server implements IServer {
+public class Server {
 
     //private static final  String URL = "http://192.168.1.7/tit/Android/";
     //private static final  String URL = "http://192.168.1.103/tit/Android/";
@@ -97,20 +97,23 @@ public class Server implements IServer {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    public  boolean isConnected() {
+   /* public  boolean isConnected() {
 
         return mIsConnected;
     }
 
-    public boolean SyncServer(String userName, String password){
+    */
+
+    public boolean SyncServer(String token){
+
         boolean isSuccessSync = false;
-        if (mIsConnected){
+
+        if (this.isOnline()) {
             String message;
-
-            List<Group> groups = getNewGroupsFromServer(userName, password);
-
+            List<Group> groups = getNewGroupsFromServer(token);
             db.insertGroups(groups);
-
+        }
+/*
                 message = sendAddGroupsConfirmation(groups, userName, password);
                 if (message==null){
                     isSuccessSync = true;
@@ -180,6 +183,8 @@ public class Server implements IServer {
                 return isSuccessSync;
             }
         }
+
+        */
         return isSuccessSync;
     }
 
@@ -315,9 +320,11 @@ public class Server implements IServer {
         return  sendMessage;
     }
 
-    private List<Group> getNewGroupsFromServer(String userName, String password) {
+    private List<Group> getNewGroupsFromServer(String token) {
         PostDataSender sender = new PostDataSender();
-        sender.execute(URL+GET_GROUPS_COMMAND, "user", userName, "password", password);
+        //sender.execute(URL+GET_GROUPS_COMMAND, "token", token);
+        sender.execute("http://api.budny.by/api/groups", token);
+
         String groupsMessage = null;
 
         try {

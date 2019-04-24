@@ -19,12 +19,12 @@ namespace WebAPI.Controllers
         private QuizzyContext db = new QuizzyContext();
 
         // GET: api/Quizs
-        public IQueryable<Quiz> GetQuizes()
+        public IQueryable<Quiz> Get()
         {
 
             var user = db.Users.Where(u => u.UserName == User.Identity.Name).Include("Quizs.Questions.Answers").FirstOrDefault();
 
-            return  user.Quizs.AsQueryable() ;
+            return  user.Quizs.AsQueryable();
             //return user.Quizs;
 
             //return db.Quizes;

@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
             server.Connect("2000@tut.by","Lehfrb1!");
 
 
-            if (server.isConnected()) {
+            if (server.isOnline()) {
                 //server.SyncServer(sp.getString("user", null), sp.getString("password", null));
 
-                server.SyncServer("2000@tut.by","Lehfrb1!");
+                server.SyncServer(sp.getString("token", null));
 
 
                 Snackbar.make(navigationView, "Синхронизация завершена",
@@ -145,11 +145,11 @@ public class MainActivity extends AppCompatActivity {
 
                         if (menuItem.getItemId()==R.id.nav_sync){
                             Server server = new Server(getApplicationContext());
-                            server.Connect(sp.getString("user",null),sp.getString("password",null));
-                            if (server.isConnected()) {
-                                //server.SyncServer(sp.getString("user", null), sp.getString("password", null));
+                            //server.Connect(sp.getString("user",null),sp.getString("password",null));
+                            if (server.isOnline()) {
+                                //server.SyncServer("2000@tut.by", "Lehfrb1!");
 
-                                server.SyncServer("2000@tut.by", "Lehfrb1!");
+                                server.SyncServer(sp.getString("token", null));
 
                                 Snackbar.make(navigationView, "Синхронизация завершена",
                                         Snackbar.LENGTH_LONG).show();
