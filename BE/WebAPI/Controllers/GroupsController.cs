@@ -21,7 +21,9 @@ namespace WebAPI.Controllers
         // GET: api/Groups
         public IQueryable<Group> GetGroups()
         {
-            return db.Groups.Include("Respondents");
+            var user = db.Users.Where(u => u.UserName == User.Identity.Name).Include("Groups.Respondents").FirstOrDefault();
+
+            return user.Groups.AsQueryable();
         }
 
         // GET: api/Groups/5
