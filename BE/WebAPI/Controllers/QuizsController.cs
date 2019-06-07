@@ -21,13 +21,9 @@ namespace WebAPI.Controllers
         // GET: api/Quizs
         public IQueryable<Quiz> Get()
         {
-
             var user = db.Users.Where(u => u.UserName == User.Identity.Name).Include("Quizs.Questions.Answers").FirstOrDefault();
 
             return  user.Quizs.AsQueryable();
-            //return user.Quizs;
-
-            //return db.Quizes;
         }
 
         // GET: api/Quizs/5
@@ -39,7 +35,6 @@ namespace WebAPI.Controllers
             {
                 return NotFound();
             }
-
             return Ok(quiz);
         }
 
